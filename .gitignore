@@ -1,2 +1,5 @@
 .env
-node_mudules
+node_modules
+.DS_Store
+package-lock.json
+
