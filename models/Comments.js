@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("./config/connection");
 
-class Comments extends model {}
+class Comments extends Model {}
 
 Comments.init(
   {
@@ -15,10 +15,10 @@ Comments.init(
       type: DataTypes.STRING(140),
       allowNull: false,
     },
-    songpost_id: {
+    songposts_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "post",
+        model: "songposts",
         key: "id",
       },
     },
