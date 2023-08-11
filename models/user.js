@@ -25,15 +25,20 @@ const User = sequelize.define('User', {
     validate: {
       isEmail: true, //checks if the email is valid
     },
-  },
-  //allows only passwords with a length of 8 or more
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      len: [8], //sets the length
+},
+//allows only alphanumeric characters for the password
+  hooks: {
+    async beforeCreate(newUserData) {
+      newUserData.password = await bcrypt.hash(newUserData.password, 10);
+      return newUserData;
     },
   },
-});
+  sequelize,
+  timestamps: false,
+  freezeTableName: true,
+  underscored: true,
+  modelName: 'user',
+}
+);
 
 module.exports = User;
