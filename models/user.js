@@ -2,7 +2,8 @@ const { Model, DataTypes } = require('sequelize'); //imports the datatypes from 
 const sequelize = require('../config/connection'); //imports the sequelize connection to config/connection.js
 
 //creates the user model
-const User = sequelize.define('User', {
+ class User extends Model {}
+ User.init({ 
   id: {
     type: DataTypes.INTEGER, //sets the data type to integer
     primaryKey: true,
@@ -38,7 +39,6 @@ const User = sequelize.define('User', {
   freezeTableName: true,
   underscored: true,
   modelName: 'user',
-}
-);
+});
 
 module.exports = User;
