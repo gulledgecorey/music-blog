@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Nunito"
+    />
+    <link rel="stylesheet" href="/public/styles/styles.css" />
+    <title>Shoutout to the Beat</title>
+  </head>
+
+  <body class="wrapper">
+    <!--Header ^_^ -->
+    <section class="hero">
+      <div class="hero-body">
+        <p class="title">Shoutout to the Beat</p>
+        <!--Conditionally Render logout based on if logged in-->
+        <button class="button new-post">New Post</button>
+        <button class="button login-button">Logout</button>
+      </div>
+    </section>
+    <!--Conditionally Render page based on if logged in-->
+
+    <footer></footer>
+  </body>
 </html>
