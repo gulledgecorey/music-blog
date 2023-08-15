@@ -2,7 +2,6 @@ const router = require('express').Router();
 const { SongPosts, Comments, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
 router.get('/', async (req, res) => {
    try {
     const songPosts = await SongPosts.findAll({
@@ -16,16 +15,13 @@ router.get('/', async (req, res) => {
         }
       ],
         });
-        //post route
 
-   
     // error checking
     res.status(200).json(songPosts);
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
 
 // POST route
 router.post('/', async (req, res) => {
