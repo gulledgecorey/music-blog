@@ -3,7 +3,8 @@ const sequelize = require('../config/connection'); //imports the sequelize conne
 
 //creates the user model
  class User extends Model {}
- User.init({ 
+ User.init(
+    { 
   id: {
     type: DataTypes.INTEGER, //sets the data type to integer
     primaryKey: true,
