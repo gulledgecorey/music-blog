@@ -1,8 +1,8 @@
-const router = require('express').Router();
-const {SongPosts, Comments, User} = require('../../models');
-const withAuth = require('../utils/auth');
+const router = require("express").Router();
+const { SongPosts, Comments, User } = require("../../models");
+const withAuth = require("../../utils/auth");
 
-router.get('/', async (req, res) => {
+/*router.get('/', async (req, res) => {
   try {
     
     const songPost = await SongPosts.findAll({
@@ -10,3 +10,6 @@ router.get('/', async (req, res) => {
             
         ]
     })
+*/
+
+module.exports = router;

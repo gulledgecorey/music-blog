@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { Comments, SongPosts, User } = require("../../models");
-const withAuth = require("../utils/auth");
+const withAuth = require("../../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
@@ -65,9 +65,9 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.post('/', async (req, res) => {
-    // create a new category
-    /* req.body should look like this...
+router.post("/", async (req, res) => {
+  // create a new category
+  /* req.body should look like this...
     {
       product_name: "Basketball",
       price: 200.00,
@@ -75,32 +75,32 @@ router.post('/', async (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
     */
-    try {
-      const commentsData = await Comments.create(req.body);
-      res.status(200).json(commentsData);
-    } catch (err) {
-      res.status(400).json(err);
-    }
-  });
+  try {
+    const commentsData = await Comments.create(req.body);
+    res.status(200).json(commentsData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
 
-  router.delete('/:id', async (req, res) => {
-    // delete a category by its `id` value
-    try {
-      const commentsData = await Comments.destroy({
-        where: {
-          id: req.params.id
-        }
-      });
-  
-      if (!commentsData) {
-        res.status(404).json({ message: 'No data found' });
-        return;
-      }
-  
-      res.status(200).json(commentsData);
-    } catch (err) {
-      res.status(500).json(err);
+router.delete("/:id", async (req, res) => {
+  // delete a category by its `id` value
+  try {
+    const commentsData = await Comments.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (!commentsData) {
+      res.status(404).json({ message: "No data found" });
+      return;
     }
-  });
+
+    res.status(200).json(commentsData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = Comments;
