@@ -2,6 +2,7 @@ const { Model, DataTypes } = require("sequelize"); //imports the datatypes from 
 const sequelize = require("../config/connection"); //imports the sequelize connection to config/connection.js
 
 //creates the user model
+
 class User extends Model {}
 User.init(
   {
@@ -10,6 +11,7 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
+
     },
     //allows only alphanumeric characters for the username
     username: {
