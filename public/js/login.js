@@ -1,21 +1,21 @@
-//let loginform = document.getElementById("login");
-//let registerform = document.getElementById("register");
+let loginToggleEl = document.querySelector(".log-btn");
+let signupToggleEl = document.querySelector(".sign-btn");
 
-// const registerbtn = () => {
-//   console.log("register world");
-//   document.getElementById("login").style.display = "none";
-//   document.getElementById("register").style.display = "block";
-//   btn.style.left = "110px";
-// };
-// const loginbtn = () => {
-//   console.log("login world");
-//   document.getElementById("login").style.display = "block";
-//   document.getElementById("register").style.display = "none";
-//   btn.style.right = "0px";
-// };
-// document.querySelector(".log-btn").addEventListener("click", loginbtn);
+console.log(loginToggleEl);
 
-// document.querySelector(".sign-btn").addEventListener("click", registerbtn);
+const loginToggle = () => {
+  console.log("login world");
+  document.getElementById("login").style.display = "block";
+  document.getElementById("register").style.display = "none";
+  btn.style.left = "0px";
+  btn.style.right = "0px";
+};
+const signupToggle = () => {
+  console.log("signup world");
+  document.getElementById("login").style.display = "none";
+  document.getElementById("register").style.display = "block";
+  btn.style.left = "110px";
+};
 
 const loginFormHandler = async (event) => {
   event.preventDefault();
@@ -68,3 +68,6 @@ document
 document
   .querySelector(".signup-form")
   .addEventListener("submit", signupFormHandler);
+
+loginToggleEl.addEventListener("click", loginToggle);
+signupToggleEl.addEventListener("click", signupToggle);
