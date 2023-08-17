@@ -10,7 +10,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Nunito"
     />
-    <link rel="stylesheet" href="/public/styles/styles.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
     <title>Shoutout to the Beat</title>
   </head>
 
@@ -20,12 +20,19 @@
       <div class="hero-body">
         <p class="title">Shoutout to the Beat</p>
         <!--Conditionally Render logout based on if logged in-->
+
         <button class="button new-post">New Post</button>
-        <button class="button login-button">Logout</button>
+        {{#if logged_in}}
+          <button class="button login-button" id="logout">Logout</button>
+        {{/if}}
       </div>
     </section>
     <!--Conditionally Render page based on if logged in-->
-
+    {{{body}}}
     <footer></footer>
   </body>
 </html>
+{{#if logged_in}}
+  <script src="./js/logout.js">
+  </script>
+{{/if}}

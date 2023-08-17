@@ -5,17 +5,18 @@ User.hasMany(SongPost, {
     foreignKey: 'user_id' ,
     onDelete: 'CASCADE'
 });
-SongPost.hasMany(Comments, {
-    foreignKey: 'user_id' ,
-    onDelete: 'CASCADE'
+SongPosts.hasMany(Comments, {
+  foreignKey: "songposts_id",
+  onDelete: "CASCADE",
 });
 
-SongPost.belongsTo(User, {
-    foreignKey: 'user_id'
+SongPosts.belongsTo(User, {
+  foreignKey: "user_id",
 });
-Comments.belongsTo(SongPost, {
-    foreignKey: 'user_id'
+Comments.belongsTo(SongPosts, {
+  foreignKey: "songposts_id",
 });
-module.exports = { User, SongPost, Comments};
-
- 
+Comments.belongsTo(User, {
+  foreignKey: "user_id",
+});
+module.exports = { User, SongPosts, Comments };
