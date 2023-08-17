@@ -9,4 +9,12 @@ router.get('/', async (req, res) => {
         include: [
             
         ]
+       
+        
     })
+    res.json(SongPost)
+      } catch(err){
+        if(err)throw err
+      }
+    })
+  
