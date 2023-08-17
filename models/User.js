@@ -1,23 +1,26 @@
 const { Model, DataTypes } = require("sequelize"); //imports the datatypes from sequelize
+const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection"); //imports the sequelize connection to config/connection.js
 
 //creates the user model
-class User extends Model {}
+
+class User extends Model {
+  checkPassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.password);
+  }
+}
 User.init(
   {
     id: {
       type: DataTypes.INTEGER, //sets the data type to integer
+      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false,
     },
     //allows only alphanumeric characters for the username
     username: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isAlphanumeric: true,
-      },
     },
     //allows only email addresses
     email: {
@@ -28,6 +31,10 @@ User.init(
         isEmail: true, //checks if the email is valid
       },
     },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   //allows only alphanumeric characters for the password
   {
@@ -35,6 +42,13 @@ User.init(
       async beforeCreate(newUserData) {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
+      },
+      beforeUpdate: async (updatedUserData) => {
+        updatedUserData.password = await bcrypt.hash(
+          updatedUserData.password,
+          10
+        );
+        return updatedUserData;
       },
     },
 
