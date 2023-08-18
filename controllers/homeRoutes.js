@@ -1,21 +1,23 @@
-const router = require('express').Router();
-router.get('/', async (req, res) => {
+const router = require("express").Router();
+const { SongPost, Comments, User } = require("../models");
+const withAuth = require("../utils/auth");
+router.get("/", async (req, res) => {
   try {
-    res.render('homepage', { 
-        logged_in: req.session.logged_in 
-      });
+    res.render("homepage", {
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
-})
-router.get('/songposts', async (req, res) => {
+});
+
+router.get("/new-post", withAuth, async (req, res) => {
   try {
-    res.render('songposts', { 
-        logged_in: req.session.logged_in 
-      });
+    res.render("newPost", { logged_in: req.session.logged_in });
   } catch (err) {
     res.status(500).json(err);
   }
+
 })
 
 router.get('/comments', async (req, res) => {
@@ -26,20 +28,30 @@ router.get('/comments', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-})
+});
 
-//added this for comments 
-router.post('/comments', async (req, res) => {
+router.get("/songposts", async (req, res) => {
   try {
-    const { commentText } = req.body; 
-    const newComment = await saveCommentToDatabase(commentText);
+    const songPosts = await SongPost.findAll({
+      include: [
+        {
+          model: Comments,
+        },
+        {
+          model: User,
+        },
+      ],
+    });
+    console.log(songPosts);
+    res.render("songposts", {
+      songPosts,
+      logged_in: req.session.logged_in,
+    });
 
-    res.status(201).json(newComment); 
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-
-
 module.exports = router;
+
