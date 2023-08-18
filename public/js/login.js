@@ -1,42 +1,40 @@
-//let loginform = document.getElementById("login");
-//let registerform = document.getElementById("register");
+let loginToggleEl = document.querySelector(".log-btn");
+let signupToggleEl = document.querySelector(".sign-btn");
 
-const registerbtn = () => {
-  console.log("register world");
+console.log(loginToggleEl);
+
+const loginToggle = () => {
+  console.log("login world");
+  document.getElementById("login").style.display = "block";
+  document.getElementById("register").style.display = "none";
+  btn.style.left = "0px";
+  btn.style.right = "0px";
+};
+const signupToggle = () => {
+  console.log("signup world");
   document.getElementById("login").style.display = "none";
   document.getElementById("register").style.display = "block";
   btn.style.left = "110px";
 };
-const loginbtn = () => {
-  console.log("login world");
-  document.getElementById("login").style.display = "block";
-  document.getElementById("register").style.display = "none";
-  btn.style.right = "0px";
-};
-document.querySelector(".log-btn").addEventListener("click", loginbtn);
-
-document.querySelector(".sign-btn").addEventListener("click", registerbtn);
 
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
-  // Collect values from the login form
-  const email = document.querySelector(".username-login").value.trim();
+  const email = document.querySelector(".email-login").value.trim();
   const password = document.querySelector(".password-login").value.trim();
 
-  if (username && password) {
-    // Send a POST request to the API endpoint
+  if (email && password) {
     const response = await fetch("/api/users/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
     });
-
+    console.log(response);
     if (response.ok) {
-      // If successful, redirect the browser to the profile page
-      document.location.replace("/profile");
+      console.log(response);
+      document.location.replace("/");
     } else {
-      alert(response.statusText);
+      alert("Failed to log in.");
     }
   }
 };
@@ -56,9 +54,9 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/profile");
+      document.location.replace("/");
     } else {
-      alert(response.statusText);
+      alert("Failed to sign up.");
     }
   }
 };
@@ -70,3 +68,6 @@ document
 document
   .querySelector(".signup-form")
   .addEventListener("submit", signupFormHandler);
+
+loginToggleEl.addEventListener("click", loginToggle);
+signupToggleEl.addEventListener("click", signupToggle);
