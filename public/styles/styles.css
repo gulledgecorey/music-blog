@@ -130,3 +130,13 @@ span {
   background: linear-gradient(to right, #a3b18a, #dad7cd);
   transition: 5s;
 }
+.songpost-container {
+
+}
+.songpost-card {
+  margin: 0 auto;
+  /* width: 70%; */
+}
+.left-card {
+  width: 70%;
+}
