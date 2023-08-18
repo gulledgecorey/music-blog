@@ -130,3 +130,10 @@ span {
   background: linear-gradient(to right, #a3b18a, #dad7cd);
   transition: 5s;
 }
+
+.box {
+  width: 100%;
+  height: 200px;
+  background-color: #588157;
+  margin-top: 20px;
+}
