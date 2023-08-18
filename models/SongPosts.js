@@ -15,6 +15,18 @@ SongPosts.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    // song_title: {
+    //   type: DataTypes.STRING,
+    // },
+    // song_track: {
+    //   type: DataTypes.STRING,
+    // },
+    // song_artist: {
+    //   type: DataTypes.STRING,
+    // },
+    // song_image: {
+    //   type: DataTypes.STRING,
+    // },
     post: {
       type: DataTypes.STRING(140),
       allownull: false,
