@@ -222,3 +222,13 @@ span {
   background: #dad7cd;
   box-shadow: 3px 4px 4px #3a5a40;
 }
+.songpost-container {
+
+}
+.songpost-card {
+  margin: 0 auto;
+  /* width: 70%; */
+}
+.left-card {
+  width: 70%;
+}
