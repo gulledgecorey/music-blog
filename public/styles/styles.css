@@ -229,6 +229,15 @@ span {
   margin: 0 auto;
   /* width: 70%; */
 }
+
+
+.box {
+  width: 100%;
+  height: 200px;
+  background-color: #588157;
+  margin-top: 20px;
+
 .left-card {
   width: 70%;
+
 }
