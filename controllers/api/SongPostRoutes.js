@@ -1,13 +1,14 @@
 const router = require("express").Router();
-const { SongPosts, Comments, User } = require("../../models");
-const withAuth = require("../../utils/auth");
+const { SongPost, Comments, User } = require("../../models");
+
 const fetch = require("isomorphic-unfetch");
 const { getData, getPreview, getTracks, getDetails } =
   require("spotify-url-info")(fetch);
 
-router.get("/", async (req, res) => {
+const withAuth = require("../../utils/auth");
+router.get("/", withAuth, async (req, res) => {
   try {
-    const songPosts = await SongPosts.findAll({
+    const songPosts = await SongPost.findAll({
       include: [
         {
           model: Comments,
@@ -26,7 +27,7 @@ router.get("/", async (req, res) => {
 });
 
 // POST route
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
     const { song_link, post } = req.body;
     //grabs the spotify data from link
@@ -34,23 +35,28 @@ router.post("/", async (req, res) => {
       headers: {
         "user-agent": "googlebot",
       },
-    }).then((data) => console.log(data));
-    const newSongPost = await SongPosts.create({
-      song_link,
-      post,
-      user_id: req.session.user_id,
+    }).then(async (data) => {
+      const newSongPost = await SongPost.create({
+        song_link,
+        song_title: data.title,
+        song_track: data.track,
+        song_artist: data.artist,
+        song_image: data.image,
+        post,
+        user_id: req.session.user_id,
+      });
+      // console.log(newSongPost);
+      res.status(201).json(newSongPost);
     });
-
-    res.status(201).json(newSongPost);
   } catch (err) {
     res.status(500).json({ error: "error" });
   }
 });
 
 // GET route
-router.get("/:id", async (req, res) => {
+router.get("/:id", withAuth, async (req, res) => {
   try {
-    const songPost = await SongPosts.findByPk(req.params.id, {
+    const songPost = await SongPost.findByPk(req.params.id, {
       include: [
         {
           model: Comments,

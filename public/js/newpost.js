@@ -9,14 +9,18 @@ const newPostFormHandler = async (event) => {
       body: JSON.stringify({ song_link, post }),
       headers: { "Content-Type": "application/json" },
     });
-    console.log(response);
+    // console.log(response);
     if (response.ok) {
-      document.location.replace("/new-post");
+      document.location.replace("/songposts");
     } else {
       alert("Spotify link is invalid.");
     }
   }
 };
+const exit = () => {
+  document.location.replace("/songposts");
+};
+document.querySelector(".exit-button").addEventListener("click", exit);
 
 document
   .querySelector(".post-form")

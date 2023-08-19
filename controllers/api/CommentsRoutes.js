@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Comments, SongPosts, User } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     const commentsData = await Comments.findAll({
       include: [
@@ -22,9 +22,14 @@ router.get("/", async (req, res) => {
   }
 });
 // create
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
-    const commentsData = await Comments.create(req.body);
+    const { post, songposts_id } = req.body;
+    const commentsData = await Comments.create({
+      post,
+      songposts_id,
+      user_id: req.session.user_id,
+    });
     res.status(200).json(commentsData);
   } catch (err) {
     res.status(400).json(err);
@@ -39,7 +44,7 @@ router.post("/", async (req, res) => {
     */
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
   // delete a category by its `id` value
   try {
     const commentsData = await Comments.destroy({

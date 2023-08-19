@@ -10,6 +10,15 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+router.get("/login", async (req, res) => {
+  try {
+    res.render("homepage", {
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get("/new-post", withAuth, async (req, res) => {
   try {
@@ -17,22 +26,21 @@ router.get("/new-post", withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
 
-})
-
-router.get('/comments', async (req, res) => {
+router.get("/comments", withAuth, async (req, res) => {
   try {
-    res.render('comments', { 
-        logged_in: req.session.logged_in 
-      });
+    res.render("comments", {
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get("/songposts", async (req, res) => {
+router.get("/songposts", withAuth, async (req, res) => {
   try {
-    const songPosts = await SongPost.findAll({
+    const songPostsData = await SongPost.findAll({
       include: [
         {
           model: Comments,
@@ -42,16 +50,43 @@ router.get("/songposts", async (req, res) => {
         },
       ],
     });
-    console.log(songPosts);
+    const songPosts = songPostsData.map((songPost) =>
+      songPost.get({ plain: true })
+    );
+    // console.log(songPosts);
     res.render("songposts", {
       songPosts,
       logged_in: req.session.logged_in,
+      user_id: req.session.user_id,
     });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
+router.get("/single-songpost/:id", withAuth, async (req, res) => {
+  try {
+    const songPostData = await SongPost.findByPk(req.params.id, {
+      include: [
+        {
+          model: Comments,
+        },
+        {
+          model: User,
+        },
+      ],
+    });
+    const songPost = songPostData.get({ plain: true });
+
+    //console.log(songPost);
+    res.render("single-songpost", {
+      songPost,
+      logged_in: req.session.logged_in,
+      user_id: req.session.user_id,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 module.exports = router;
-
