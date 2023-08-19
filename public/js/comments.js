@@ -1,37 +1,31 @@
 const commentFormHandler = async (event) => {
-    event.preventDefault();
-  
-    const commentInput = document.querySelector(".comment-input").value.trim();
-  
-    if (commentInput) {
-      try {
-        const response = await fetch("/api/comments", {
-          method: "POST",
-          body: JSON.stringify({ commentText: commentInput }),
-          headers: { "Content-Type": "application/json" },
-        });
-  
-        if (response.ok) {
-          const newComment = await response.json();
-          document.querySelector(".comment-input").value = "";
-  
-          const commentList = document.querySelector(".comment-list");
-          const newCommentDiv = document.createElement("div");
-          newCommentDiv.classList.add("comment");
-          newCommentDiv.textContent = newComment.comment;
-          commentList.appendChild(newCommentDiv);
-        } else {
-          alert("Failed to submit comment.");
-        }
-      } catch (error) {
-        console.error("Error submitting comment:", error);
-      }
-    }
-  };
-  
+  event.preventDefault();
+  const post = document.querySelector(".song-comment").value.trim();
+  const songposts_id = `${event.target.dataset.songid}`;
 
-  
-  document
+  if (post && songposts_id) {
+    const response = await fetch("/api/comments", {
+      method: "POST",
+      body: JSON.stringify({ post, songposts_id }),
+      headers: { "Content-Type": "application/json" },
+    });
+    // console.log(songposts_id);
+    if (response.ok) {
+      document.location.replace(
+        `/single-songpost/${event.target.dataset.songid}`
+      );
+    } else {
+      alert("Failed to submit comment.");
+    }
+  }
+};
+
+const exitPage = () => {
+  //console.log("exit button");
+  document.location.replace("/songposts");
+};
+document.querySelector(".exit-button-2").addEventListener("click", exitPage);
+//document.reload;
+document
   .querySelector(".comments-form")
   .addEventListener("submit", commentFormHandler);
-  

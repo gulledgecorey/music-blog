@@ -1,40 +1,89 @@
 <div class="container songpost-container">
   {{#each songPosts as |songPost|}}
-  <div class="card songpost-card">
+    <div class="card songpost-card">
 
-    <div class="card-content">
-      <div class="media">
-        <div class="media-left left-card">
-          <p class="subtitle is-6">@johnsmith</p>
-          <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            nec iaculis mauris.
-            <br />
-
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left left-card">
+            <p class="subtitle is-6">@{{songPost.user.username}}</p>
+            <div class="content">
+              <br />
+              {{songPost.post}}
+            </div>
+            <button
+              class="button is-success is-light"
+              data-songid={{songPost.id}}
+              id="reply"
+            >Reply</button>
           </div>
-<button class="button is-success is-light">Reply</button>
-        </div>
-        <div class="media-content">
+          <div class="">
 
-          <figure class="image is-100x100">
-            <img
-              src="https://bulma.io/images/placeholders/96x96.png"
-              alt="Album Art"
-            />
-          </figure>
-          <h3>
-            Song Title
-          </h3>
-          <h5>
-            Artist Name
-          </h5>
-          <h5>
-            Album Name
-          </h5>
+            <figure class="image">
+              <img src={{songPost.song_image}} alt="Album Art" />
+            </figure>
+            <h3>
+              {{songPost.song_title}}
+            </h3>
+            <h5>
+              {{songPost.song_artist}}
+            </h5>
+            <h5>
+              <a href={{songPost.song_link}}>
+                Listen to it here!
+              </a>
+            </h5>
+          </div>
         </div>
+
       </div>
-
     </div>
-  </div>
-{{/each}}
+  {{/each}}
 </div>
+<!--<div class="container songpost-container">
+  {{#each songPosts as |songPost|}}
+    <div class="card songpost-card">
+
+      <div class="card-content card-box">
+        <div class="media">
+          <div class="media-left left-card">
+            <div class="username-box">
+              <p>{{songPost.user.username}}</p>
+            </div>
+
+            <div class="content post-content">
+              {{songPost.post}}
+
+            </div>
+            <button
+              class="button is-success is-light"
+              data-songid={{songPost.id}}
+              id="reply"
+            >Reply</button>
+          </div>
+          <!--  
+        </div>
+  <div class="album-info">
+
+            <figure class="image is-100x100">
+              <img src={{songPost.song_image}} alt="Album Art" />
+            </figure>
+            <div class="song-information" >
+             <h3 class="song-title">
+              {{songPost.song_title}}
+            </h3>
+             <h5>
+              {{songPost.song_artist}}
+            </h5>
+            <a href= {{songPost.song_link}} >
+            Spotify Link
+            </a>
+            </div>
+
+
+  </div>
+      </div>
+    </div> 
+  {{/each}} 
+</div> -->
+<script src="./js/SongPosts.js">
+</script>

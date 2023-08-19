@@ -1,0 +1,97 @@
+<button class="button exit-button-2">x</button>
+<div class="container songpost-container">
+  <div class="card songpost-card">
+
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left left-card">
+          <p class="subtitle is-6">@{{songPost.user.username}}</p>
+          <div class="content">
+            <br />
+            {{songPost.post}}
+          </div>
+        </div>
+        <div class="">
+
+          <figure class="image">
+            <img src={{songPost.song_image}} alt="Album Art" />
+          </figure>
+          <h3>
+            {{songPost.song_title}}
+          </h3>
+          <h5>
+            {{songPost.song_artist}}
+          </h5>
+          <h5>
+            <a href={{songPost.song_link}}>
+              Listen to it here!
+            </a>
+          </h5>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="comments-box">
+  <form class="comments-form">
+    <p>
+      Leave a Comment:
+    </p>
+    <textarea
+      type="text"
+      class="textarea is-large comments-box song-comment"
+      placeholder="Write post here..."
+      required
+    ></textarea>
+    <button type="submit" class="button post-button">Post</button>
+  </form>
+</div>
+<!--<div class="container songpost-container">
+    
+    <div class="card songpost-card">
+
+      <div class="card-content card-box">
+        <div class="media">
+          <div class="media-left left-card">
+            <div class="username-box">
+              <p>{{songPost.user.username}}</p>
+            </div>
+
+            <div class="content post-content">
+              {{songPost.post}}
+
+            </div>
+            <button
+              class="button is-success is-light"
+              data-songid={{songPost.id}}
+              id="reply"
+            >Reply</button>
+          </div>
+          <!--  
+        </div>
+  <div class="album-info">
+
+            <figure class="image is-100x100">
+              <img src={{songPost.song_image}} alt="Album Art" />
+            </figure>
+            <div class="song-information" >
+             <h3 class="song-title">
+              {{songPost.song_title}}
+            </h3>
+             <h5>
+              {{songPost.song_artist}}
+            </h5>
+            <a href= {{songPost.song_link}} >
+            Spotify Link
+            </a>
+            </div>
+
+
+  </div>
+      </div>
+    </div> 
+
+</div> -->
+<script src="/js/comments.js">
+</script>

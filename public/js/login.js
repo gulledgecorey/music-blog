@@ -4,14 +4,14 @@ let signupToggleEl = document.querySelector(".sign-btn");
 console.log(loginToggleEl);
 
 const loginToggle = () => {
-  console.log("login world");
+  //console.log("login world");
   document.getElementById("login").style.display = "block";
   document.getElementById("register").style.display = "none";
   btn.style.left = "0px";
   btn.style.right = "0px";
 };
 const signupToggle = () => {
-  console.log("signup world");
+  //  console.log("signup world");
   document.getElementById("login").style.display = "none";
   document.getElementById("register").style.display = "block";
   btn.style.left = "110px";
@@ -32,7 +32,7 @@ const loginFormHandler = async (event) => {
     console.log(response);
     if (response.ok) {
       console.log(response);
-      document.location.replace("/");
+      document.location.replace("/songposts");
     } else {
       alert("Failed to log in.");
     }
@@ -54,7 +54,7 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/");
+      document.location.replace("/songposts");
     } else {
       alert("Failed to sign up.");
     }
