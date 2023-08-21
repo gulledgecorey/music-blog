@@ -236,24 +236,8 @@ span {
   flex-direction: column;
   justify-content: flex-end;
 }
-.post-media {
-  display: flex;
-}
-.album-info {
-  display: flex;
-  padding-left: 285px;
-}
-.song-information {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-.song-title {
-  padding-bottom: 10px;
-}
-#reply {
+
+/* #reply {
   color: #3a5a40;
   background: #fff;
 
@@ -270,26 +254,7 @@ span {
   background: #588157;
   color: #dad7cd;
   box-shadow: 3px 4px 4px #b5d3bb;
-}
-.username-info {
-  display: flex;
-  align-items: flex-start;
-}
-.username-box {
-  display: flex;
-  width: 130px;
-  height: 30px;
-  border-radius: 8px;
-  padding-right: 5px;
-}
-.username-box p {
-  padding-left: 5px;
-  padding-right: px;
-}
-.posted-text {
-  padding-left: 5px;
-  font-style: oblique;
-}
+} */
 .card-box {
   display: flex;
   height: 230px;
@@ -305,27 +270,3 @@ span {
 .image img {
   border-radius: 15px;
 }
-.post-content {
-  padding-top: 25px;
-  word-wrap: normal;
-  padding-bottom: 25px;
-}
-.exit-button-2 {
-  position: absolute;
-  top: 177px;
-  left: 54px;
-  color: #3a5a40;
-  background: #fff;
-  border: 1px solid #dad7cd;
-  border-radius: 15px;
-  box-shadow: 3px 4px 4px #b5d3bb;
-  cursor: pointer;
-  transition: 0.3s all ease-in-out;
-}
-.exit-button-2:hover {
-  transform: scale(1.05);
-  background: #588157;
-  color: #dad7cd;
-  box-shadow: 3px 4px 4px #b5d3bb;
-}
-/* single songpost page*/

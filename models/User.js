@@ -1,6 +1,6 @@
-const { Model, DataTypes } = require("sequelize"); //imports the datatypes from sequelize
-const bcrypt = require("bcrypt");
-const sequelize = require("../config/connection"); //imports the sequelize connection to config/connection.js
+const { Model, DataTypes } = require('sequelize'); //imports the datatypes from sequelize
+const bcrypt = require('bcrypt');
+const sequelize = require('../config/connection'); //imports the sequelize connection to config/connection.js
 
 //creates the user model
 
@@ -34,9 +34,11 @@ User.init(
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        len: [8],
+      },
     },
   },
-  //allows only alphanumeric characters for the password
   {
     hooks: {
       async beforeCreate(newUserData) {
@@ -56,7 +58,7 @@ User.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "user",
+    modelName: 'user',
   }
 );
 

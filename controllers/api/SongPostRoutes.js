@@ -1,12 +1,12 @@
-const router = require("express").Router();
-const { SongPost, Comments, User } = require("../../models");
+const router = require('express').Router();
+const { SongPost, Comments, User } = require('../../models');
 
-const fetch = require("isomorphic-unfetch");
+const fetch = require('isomorphic-unfetch');
 const { getData, getPreview, getTracks, getDetails } =
-  require("spotify-url-info")(fetch);
+  require('spotify-url-info')(fetch);
 
-const withAuth = require("../../utils/auth");
-router.get("/", withAuth, async (req, res) => {
+const withAuth = require('../../utils/auth');
+router.get('/', withAuth, async (req, res) => {
   try {
     const songPosts = await SongPost.findAll({
       include: [
@@ -27,13 +27,13 @@ router.get("/", withAuth, async (req, res) => {
 });
 
 // POST route
-router.post("/", withAuth, async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   try {
     const { song_link, post } = req.body;
     //grabs the spotify data from link
     getPreview(song_link, {
       headers: {
-        "user-agent": "googlebot",
+        'user-agent': 'googlebot',
       },
     }).then(async (data) => {
       const newSongPost = await SongPost.create({
@@ -49,12 +49,12 @@ router.post("/", withAuth, async (req, res) => {
       res.status(201).json(newSongPost);
     });
   } catch (err) {
-    res.status(500).json({ error: "error" });
+    res.status(500).json({ error: 'error' });
   }
 });
 
 // GET route
-router.get("/:id", withAuth, async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
   try {
     const songPost = await SongPost.findByPk(req.params.id, {
       include: [
@@ -69,13 +69,13 @@ router.get("/:id", withAuth, async (req, res) => {
 
     // error checking for songPost
     if (!songPost) {
-      return res.status(404).json({ message: "Song was not found." });
+      return res.status(404).json({ message: 'Song was not found.' });
     }
 
     //return songPost
     res.status(200).json(songPost);
   } catch (err) {
-    res.status(500).json({ error: "error" });
+    res.status(500).json({ error: 'error' });
   }
 });
 
