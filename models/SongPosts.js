@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
 class SongPosts extends Model {}
 
@@ -34,8 +34,8 @@ SongPosts.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "user",
-        key: "id",
+        model: 'user',
+        key: 'id',
       },
     },
   },
@@ -44,7 +44,7 @@ SongPosts.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "songposts",
+    modelName: 'songposts',
   }
 );
 

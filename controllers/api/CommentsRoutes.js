@@ -1,8 +1,8 @@
-const router = require("express").Router();
-const { Comments, SongPosts, User } = require("../../models");
-const withAuth = require("../../utils/auth");
+const router = require('express').Router();
+const { Comments, SongPosts, User } = require('../../models');
+const withAuth = require('../../utils/auth');
 
-router.get("/", withAuth, async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     const commentsData = await Comments.findAll({
       include: [
@@ -22,7 +22,7 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 // create
-router.post("/", withAuth, async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   try {
     const { post, songposts_id } = req.body;
     const commentsData = await Comments.create({
@@ -44,7 +44,7 @@ router.post("/", withAuth, async (req, res) => {
     */
 });
 
-router.delete("/:id", withAuth, async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
   // delete a category by its `id` value
   try {
     const commentsData = await Comments.destroy({
@@ -54,7 +54,7 @@ router.delete("/:id", withAuth, async (req, res) => {
     });
 
     if (!commentsData) {
-      res.status(404).json({ message: "No data found" });
+      res.status(404).json({ message: 'No data found' });
       return;
     }
 

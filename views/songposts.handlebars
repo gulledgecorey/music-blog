@@ -1,26 +1,26 @@
-<div class="container songpost-container">
+<div class='container songpost-container'>
   {{#each songPosts as |songPost|}}
-    <div class="card songpost-card">
+    <div class='card songpost-card'>
 
-      <div class="card-content">
-        <div class="media">
-          <div class="media-left left-card">
+      <div class='card-content'>
+        <div class='media'>
+          <div class='media-left left-card'>
 
-            <p class="subtitle is-6">@{{songPost.user.username}}</p>
-            <div class="content">
+            <p class='subtitle is-6'>@{{songPost.user.username}}</p>
+            <div class='content'>
               <br />
               {{songPost.post}}
             </div>
-            <button
+            {{!-- <button
               class="button is-success is-light"
               data-songid={{songPost.id}}
               id="reply"
-            >Reply</button>
+            >Reply</button> --}}
           </div>
-          <div class="">
+          <div class=''>
 
-            <figure class="image">
-              <img src={{songPost.song_image}} alt="Album Art" />
+            <figure class='image'>
+              <img src={{songPost.song_image}} alt='Album Art' />
             </figure>
             <h3>
               {{songPost.song_title}}
@@ -41,52 +41,6 @@
   {{/each}}
 
 </div>
-<!--<div class="container songpost-container">
-  {{#each songPosts as |songPost|}}
-    <div class="card songpost-card">
 
-      <div class="card-content card-box">
-        <div class="media">
-          <div class="media-left left-card">
-            <div class="username-box">
-              <p>{{songPost.user.username}}</p>
-            </div>
-
-            <div class="content post-content">
-              {{songPost.post}}
-
-            </div>
-            <button
-              class="button is-success is-light"
-              data-songid={{songPost.id}}
-              id="reply"
-            >Reply</button>
-          </div>
-          <!--  
-        </div>
-  <div class="album-info">
-
-            <figure class="image is-100x100">
-              <img src={{songPost.song_image}} alt="Album Art" />
-            </figure>
-            <div class="song-information" >
-             <h3 class="song-title">
-              {{songPost.song_title}}
-            </h3>
-             <h5>
-              {{songPost.song_artist}}
-            </h5>
-            <a href= {{songPost.song_link}} >
-            Spotify Link
-            </a>
-            </div>
-
-
-  </div>
-      </div>
-    </div> 
-  {{/each}} 
-</div> -->
-<script src="./js/SongPosts.js">
+<script src='./js/SongPosts.js'>
 </script>
-
